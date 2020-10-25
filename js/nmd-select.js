@@ -1,6 +1,4 @@
-import HTMLParsedElement from 'html-parsed-element';
-
-import "./style.css";
+import HTMLParsedElement from "html-parsed-element";
 
 const template = document.createRange().createContextualFragment(/*html*/`
 <div>
@@ -9,13 +7,14 @@ const template = document.createRange().createContextualFragment(/*html*/`
 	<span></span>
 </div>`);
 
+export default
 class NmdSelect extends HTMLParsedElement {
 	constructor(){
 		super();
 	}
 
 	static get observedAttributes() {
-		return ["id", "name", "required", "autofocus", "disabled", "form", "placeholder", "readonly", "input-class"];
+		return ["id", "name", "required", "autofocus", "disabled", "form", "placeholder", "readonly", "input-class", "select-class"];
 	}
 
 	// #region Proxy getters and setters for the usual <select> stuff
@@ -55,6 +54,11 @@ class NmdSelect extends HTMLParsedElement {
 			return;
 		}
 
+		if(name === "select-class"){
+			this.selectElement.className = newValue;
+			return;
+		}
+
 		// Observed attributes are passed to the input element.
 		let target = this.inputElement;
 		if(["name"].includes(name))
@@ -81,9 +85,7 @@ class NmdSelect extends HTMLParsedElement {
 		// Process attributes because attributeChangedCallback was triggered before element was parsed.
 		for(let attr of NmdSelect.observedAttributes)
 			if(this.hasAttribute(attr))
-				this.inputElement.setAttribute(attr, this.getAttribute(attr));
-		if(this.hasAttribute("input-class"))
-			this.inputElement.className = this.getAttribute("input-class");
+				this.attributeChangedCallback(attr, null, this.getAttribute(attr));
 
 		// Filter options after input value changed.
 		this.inputElement.addEventListener("input", (e) => {
@@ -290,4 +292,3 @@ class NmdSelect extends HTMLParsedElement {
 		return text.indexOf(search) >= 0;
 	}
 }
-customElements.define("nmd-select", NmdSelect);

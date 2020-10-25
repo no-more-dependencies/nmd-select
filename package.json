@@ -1,0 +1,32 @@
+{
+	"name": "nmd-select",
+	"version": "1.0.0",
+	"description": "Searchable select web compoment with vanilla look and feel.",
+	"main": "./js/nmd-select.js",
+	"browser": "./dist/nmd-select.js",
+	"style": "css/main.css",
+	"dependencies": {
+		"html-parsed-element": "^0.4.0"
+	},
+	"devDependencies": {
+		"css-loader": "^4.3.0",
+		"style-loader": "^1.3.0",
+		"webpack": "^4.44.2",
+		"webpack-cli": "^3.3.12"
+	},
+	"scripts": {
+		"build": "webpack"
+	},
+	"keywords": [
+		"webcomponent",
+		"tag",
+		"select",
+		"searchable"
+	],
+	"author": "Lukáš Kotržena <lkotrzena@gmail.com> (https://kotrzena.eu)",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/no-more-dependencies/nmd-select.git"
+	}
+}
