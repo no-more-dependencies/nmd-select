@@ -124,7 +124,6 @@ class NmdSelect extends HTMLParsedElement {
 
 		// Open/close select on mousedown (just like vanilla select).
 		this.wrapperElement.addEventListener("mousedown", (e) => {
-			console.log(e);
 			if(this.isOpen){
 				if(e.target.tagName === "OPTION"){
 					e.target.selected = true;
@@ -195,10 +194,12 @@ class NmdSelect extends HTMLParsedElement {
 	 * You probably shouldn't run this directly.
 	 */
 	optionSelected() {
-		if(this.selectElement.selectedOptions.length > 0)
+		if(this.selectElement.selectedOptions.length > 0){
 			this.inputElement.value = this.selectElement.selectedOptions[0].text;
-		else
+		} else {
 			this.inputElement.value = "";
+			this.selectElement.value = "";
+		}
 	}
 
 	/**
@@ -265,6 +266,7 @@ class NmdSelect extends HTMLParsedElement {
 				return;
 			}
 		}
+		this.selectElement.value = "";
 		if(clearValue)
 			this.inputElement.value = "";
 	}
