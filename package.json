@@ -1,6 +1,6 @@
 {
 	"name": "nmd-select",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Searchable select web compoment with vanilla look and feel.",
 	"main": "./js/nmd-select.js",
 	"browser": "./dist/nmd-select.js",
