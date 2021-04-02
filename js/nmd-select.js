@@ -82,6 +82,9 @@ class NmdSelect extends HTMLParsedElement {
 		this.inputElement = this.querySelector("input");
 		this.wrapperElement = this.querySelector("div");
 
+		if(this.selectElement.selectedOptions[0])
+			this.inputElement.value = this.selectElement.selectedOptions[0].text;
+
 		// Process attributes because attributeChangedCallback was triggered before element was parsed.
 		for(let attr of NmdSelect.observedAttributes)
 			if(this.hasAttribute(attr))
@@ -246,7 +249,6 @@ class NmdSelect extends HTMLParsedElement {
 				count += this.updateOptionVisibility(entry, search);
 			}
 		}
-		console.log("size", count);
 		let size = Math.max(count, 2);
 		let maxSize = this.getAttribute("max-size");
 		if(maxSize)
