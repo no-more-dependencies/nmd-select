@@ -124,6 +124,7 @@ class NmdSelect extends HTMLParsedElement {
 
 		// Open/close select on mousedown (just like vanilla select).
 		this.wrapperElement.addEventListener("mousedown", (e) => {
+			console.log(e);
 			if(this.isOpen){
 				if(e.target.tagName === "OPTION"){
 					e.target.selected = true;
@@ -131,7 +132,8 @@ class NmdSelect extends HTMLParsedElement {
 					this.close();
 				} else if(e.target.tagName === "SPAN" && this.isOpen) {
 					this.close();
-				}
+				} else // This should happen when scroll bar is clicked
+					this.ignoreBlur = true;
 			} else {
 				this.open();
 				// Click causes focus loss. Setting this boolean makes blur listener ignore one event.
@@ -244,7 +246,11 @@ class NmdSelect extends HTMLParsedElement {
 			}
 		}
 		console.log("size", count);
-		this.selectElement.size = Math.max(count, 2);
+		let size = Math.max(count, 2);
+		let maxSize = this.getAttribute("max-size");
+		if(maxSize)
+			size = Math.min(size, maxSize);
+		this.selectElement.size = size;
 	}
 
 	/**

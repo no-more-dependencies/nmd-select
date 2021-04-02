@@ -10,37 +10,55 @@
 </head>
 
 <body>
-	<div class="form-group">
-		<nmd-select input-class="form-control" select-class="form-control">
-			<optgroup label="Swedish Cars">
-				<option value="volvo">Volvo</option>
-				<option value="saab">Saab</option>
-			</optgroup>
-			<optgroup label="German Cars">
-				<option value="mercedes">Mercedes</option>
-				<option value="audi">Audi</option>
-			</optgroup>
-		</nmd-select><br>
-		<select class="form-control">
-			<optgroup label="Swedish Cars">
-				<option value="volvo">Volvo</option>
-				<option value="saab">Saab</option>
-			</optgroup>
-			<optgroup label="German Cars">
-				<option value="mercedes">Mercedes</option>
-				<option value="audi">Audi</option>
-			</optgroup>
-		</select><br>
-		<select multiple class="form-control">
-			<optgroup label="Swedish Cars">
-				<option value="volvo">Volvo</option>
-				<option value="saab">Saab</option>
-			</optgroup>
-			<optgroup label="German Cars">
-				<option value="mercedes">Mercedes</option>
-				<option value="audi">Audi</option>
-			</optgroup>
-		</select>
+	<div class="container my-5">
+		<div class="form-group">
+			Vanilla:<br>
+			<nmd-select>
+				<optgroup label="Swedish Cars">
+					<option value="volvo">Volvo</option>
+					<option value="saab">Saab</option>
+				</optgroup>
+				<optgroup label="German Cars">
+					<option value="mercedes">Mercedes</option>
+					<option value="audi">Audi</option>
+				</optgroup>
+			</nmd-select>
+			<br><br><br>
+			Bootstrap:<br>
+			<nmd-select input-class="form-control">
+				<optgroup label="Swedish Cars">
+					<option value="volvo">Volvo</option>
+					<option value="saab">Saab</option>
+				</optgroup>
+				<optgroup label="German Cars">
+					<option value="mercedes">Mercedes</option>
+					<option value="audi">Audi</option>
+				</optgroup>
+			</nmd-select>
+			<br><br><br>
+			Regular selects for comparison:<br>
+			<select class="form-control">
+				<optgroup label="Swedish Cars">
+					<option value="volvo">Volvo</option>
+					<option value="saab">Saab</option>
+				</optgroup>
+				<optgroup label="German Cars">
+					<option value="mercedes">Mercedes</option>
+					<option value="audi">Audi</option>
+				</optgroup>
+			</select>
+			<br>
+			<select multiple class="form-control">
+				<optgroup label="Swedish Cars">
+					<option value="volvo">Volvo</option>
+					<option value="saab">Saab</option>
+				</optgroup>
+				<optgroup label="German Cars">
+					<option value="mercedes">Mercedes</option>
+					<option value="audi">Audi</option>
+				</optgroup>
+			</select>
+		</div>
 	</div>
 </body>
 

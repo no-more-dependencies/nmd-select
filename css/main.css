@@ -43,10 +43,15 @@ nmd-select select {
 	display: block;
 	position: absolute;
 	z-index: 1234567890;
+	min-width: 100%;
 }
 
 nmd-select select[hidden] {
 	display: none;
+}
+
+nmd-select select:focus {
+	outline: none;
 }
 
 nmd-select input {
