@@ -50,6 +50,7 @@ nmd-select select[hidden] {
 	display: none;
 }
 
+/* Disable Chrome's focus outline */
 nmd-select select:focus {
 	outline: none;
 }
@@ -62,4 +63,9 @@ nmd-select input {
 
 nmd-select input:focus {
 	cursor: text;
+}
+
+/* Hide options before element is loaded */
+nmd-select > optgroup, nmd-select > option {
+	display: none;
 }
