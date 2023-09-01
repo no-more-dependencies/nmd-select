@@ -43,11 +43,13 @@ nmd-select > div > span {
 	}
 }
 
-nmd-select select {
+/* Attribute selector makes it more specific so it has higher priority that other styles (Bootstrap class was changing width) */
+nmd-select select[tabindex] {
 	display: block;
 	position: absolute;
 	z-index: 1234567890;
 	min-width: 100%;
+	width: auto;
 }
 
 nmd-select select[hidden] {

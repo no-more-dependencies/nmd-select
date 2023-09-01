@@ -210,11 +210,14 @@ class NmdSelect extends HTMLParsedElement {
 	 * You probably shouldn't run this directly.
 	 */
 	positionOptions(){
+		/** @type {DOMRect} */
 		let rect = this.getBoundingClientRect();
 		this.selectElement.style.bottom = "";
 		this.selectElement.style.maxHeight = "";
 		let spaceAbove = rect.top;
 		let spaceBelow = window.innerHeight - rect.bottom;
+		let maxWidth = window.innerWidth - rect.left;
+		this.selectElement.style.maxWidth = `${maxWidth}px`;
 		if(spaceBelow < this.selectElement.offsetHeight) {
 			if(spaceAbove >= spaceBelow) {
 				this.selectElement.style.bottom = rect.height + "px";
