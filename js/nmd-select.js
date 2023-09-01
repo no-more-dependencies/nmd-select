@@ -9,10 +9,6 @@ const template = document.createRange().createContextualFragment(/*html*/`
 
 export default
 class NmdSelect extends HTMLParsedElement {
-	constructor(){
-		super();
-	}
-
 	static get observedAttributes() {
 		return ["id", "name", "required", "autofocus", "disabled", "form", "placeholder", "readonly", "input-class", "select-class"];
 	}
@@ -239,7 +235,7 @@ class NmdSelect extends HTMLParsedElement {
 			if(entry instanceof HTMLOptGroupElement){
 				let somethingVisible = false;
 				for(let opt of entry.children){
-					somethingVisible = this.updateOptionVisibility(opt, search) || somethingVisible;
+					somethingVisible = this.updateOptionVisibility(entry, opt, search) || somethingVisible;
 					count += somethingVisible;
 					if(!firstMatchSelected && somethingVisible){
 						opt.selected = true;
@@ -249,7 +245,7 @@ class NmdSelect extends HTMLParsedElement {
 				entry.hidden = !somethingVisible;
 				count += somethingVisible;
 			} else if(entry instanceof HTMLOptionElement) {
-				count += this.updateOptionVisibility(entry, search);
+				count += this.updateOptionVisibility(null, entry, search);
 			}
 		}
 		let size = Math.max(count, 2);
@@ -279,13 +275,14 @@ class NmdSelect extends HTMLParsedElement {
 	/**
 	 * Updates passed option's visibility based on search string. @see testMatch
 	 * You probably shouldn't run this directly.
+	 * @param {?HTMLOptGroupElement} group 
 	 * @param {HTMLOptionElement} option 
 	 * @param {string} search 
 	 */
-	updateOptionVisibility(option, search){
+	updateOptionVisibility(group, option, search){
 		if(
 			option instanceof HTMLOptionElement && 
-			(search.length == 0 || this.testMatch(option.text, search))
+			(search.length == 0 || this.testMatch(option.text, search) || group && this.testMatch(group.label, search))
 		){
 			option.hidden = false;
 			return true;
@@ -302,6 +299,7 @@ class NmdSelect extends HTMLParsedElement {
 	testMatch(text, search){
 		text = text.toLocaleLowerCase();
 		search = search.toLocaleLowerCase();
-		return text.indexOf(search) >= 0;
+		let parts = search.split(" ")
+		return parts.every(p => text.indexOf(p) >= 0);
 	}
 }
