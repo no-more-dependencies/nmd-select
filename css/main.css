@@ -6,6 +6,10 @@ nmd-select > div {
 	position: relative;
 }
 
+nmd-select[no-chevron] > div > span {
+	display: none;
+}
+
 nmd-select > div > span {
 	content: "";
 	background-image: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8"?><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="9" height="9"><path d="M16 14L50 48L84 14L100 30L50 80L0 30Z" fill="%23000000"></path></svg>');
