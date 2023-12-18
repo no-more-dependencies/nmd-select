@@ -7,6 +7,9 @@ const template = document.createRange().createContextualFragment(/*html*/`
 	<span></span>
 </div>`);
 
+/**
+ * @extends HTMLElement
+ */
 export default
 class NmdSelect extends HTMLParsedElement {
 	static get observedAttributes() {
@@ -66,7 +69,7 @@ class NmdSelect extends HTMLParsedElement {
 			target.setAttribute(name, newValue);
 	}
 
-	parsedCallback() {
+	_createSubDom(){
 		// Use template
 		let fragment = template.cloneNode(true);
 		this.selectElement = fragment.querySelector("select");
@@ -85,7 +88,16 @@ class NmdSelect extends HTMLParsedElement {
 		for(let attr of NmdSelect.observedAttributes)
 			if(this.hasAttribute(attr))
 				this.attributeChangedCallback(attr, null, this.getAttribute(attr));
+	}
 
+	_adoptSubDom(){
+		this.selectElement = this.querySelector("select");
+		this.inputElement = this.querySelector("input");
+		this.wrapperElement = this.querySelector("div");
+		this.optionSelected();
+	}
+
+	_createEventListeners(){
 		// Filter options after input value changed.
 		this.inputElement.addEventListener("input", (e) => {
 			this.filterOptions(e.target.value);
@@ -156,6 +168,15 @@ class NmdSelect extends HTMLParsedElement {
 			}
 			this.close();
 		}, { passive: true });
+	}
+
+	parsedCallback() {
+		if(this.children.length !== 1 || this.firstElementChild.tagName !== "DIV"){
+			this._createSubDom();
+		} else {
+			this._adoptSubDom();
+		}
+		this._createEventListeners();
 	}
 
 	get isOpen() {
