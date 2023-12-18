@@ -3,3 +3,7 @@
 Searchable select web compoment with vanilla look and feel.
 
 [Demo](https://no-more-dependencies.github.io/#nmd-select)
+
+## Known issues
+
+Doesn't work on mobile browsers since this component uses select element with size attribute and mobile browsers don't render it.
